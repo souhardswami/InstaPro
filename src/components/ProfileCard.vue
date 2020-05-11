@@ -145,7 +145,7 @@ span.small {
 
 .btn button{
 	border:none;
-	padding: 10px 50px;
+	padding: 10px 20px;
 	margin:6px;
 	font-size:18px; 
 	

@@ -64,7 +64,7 @@ export default {
             console.log(this.send)
             
 
-            fetch('http://127.0.0.1:8000/api/newcomment/',{
+            fetch('https://myinstapro.herokuapp.com/api/newcomment/',{
                 method: 'POST',
                 headers:
                          {

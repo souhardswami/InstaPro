@@ -66,7 +66,7 @@ export default {
               onUpload() {
                       const formData = new FormData()
                       formData.append('image', this.selectedFile, this.selectedFile.name)
-                      axios.post('http://127.0.0.1:8000/api/images/', formData)
+                      axios.post('https://myinstapro.herokuapp.com/api/images/', formData)
                       .then(res=>{
 
                        console.log(res.data.image)
@@ -79,7 +79,7 @@ export default {
 
 
 
-                fetch('http://127.0.0.1:8000/api/newpost/',{
+                fetch('https://myinstapro.herokuapp.com/api/newpost/',{
                 
                     method: 'POST',
                     headers: {

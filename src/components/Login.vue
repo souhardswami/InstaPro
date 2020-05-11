@@ -63,7 +63,7 @@ export default {
       loginSubmit(){
         this.send.username=this.username,
         this.send.password=this.password
-        fetch('http://127.0.0.1:8000/api/userAuth/',{
+        fetch('https://myinstapro.herokuapp.com/api/userAuth/',{
                   method: 'POST',
                   headers: {
                     'Content-Type': 'application/json',
@@ -71,6 +71,7 @@ export default {
                   body: JSON.stringify(this.send)})
         .then(res=> res.json())
         .then((data)=>{
+          
           
           this.$store.commit('set_user',data),
           
@@ -81,7 +82,7 @@ export default {
           
       },
       fetchimg(userId){
-        fetch('http://127.0.0.1:8000/api/userImage/',{
+        fetch('https://myinstapro.herokuapp.com/api/userImage/',{
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',

@@ -44,7 +44,7 @@ export default {
         res(){
         
             
-            fetch('http://127.0.0.1:8000/api/search/',{
+            fetch('https://myinstapro.herokuapp.com/api/search/',{
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
