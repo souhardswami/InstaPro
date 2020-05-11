@@ -1,0 +1,159 @@
+<template>
+    		<div class="profilecard">
+
+				
+
+					<div class="card">
+						<div class="avatar">
+							<div class="circle"></div>
+							<div class="circle"></div>
+							<img :src="'http://localhost:8000'+this.$store.state.user[0].profile_img" alt=""></div>
+						
+						<div class="info" >
+							<span class="big">{{this.$store.state.user[0].username}} </span> <br/>
+							<span class="small">{{this.$store.state.user[0].name}}</span> </div>
+												
+						<div class="about">
+							<span>Lorem  dolor sit amet consectetur adipisicing elit.Incidunt, fugiat explicabo quosex error repellendus unde laborum vel numquam</span></div>
+							</div>
+					<div class="btn">
+						
+						
+						<button class="post" @click="post" >post</button>
+						<button class="followers" @click="followers">followers</button>
+						<button class="following" @click="following">following</button></div>
+			</div>
+</template>
+
+<script>
+export default {
+	
+	methods:{
+		post(){
+			this.$store.commit('set_btn',1)
+
+		},
+		followers(){
+			this.$store.commit('set_btn',2)
+		},
+		following(){
+			console.log('clicked')
+			this.$store.commit('set_btn',3)
+		}
+
+	}
+}
+</script>
+
+
+
+
+
+<style scoped>
+
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:700,600,300');
+
+
+.profilecard{
+	border-right: 4px solid red;
+	width:100%;
+}
+
+.card {
+	margin-left:10%;
+	width: 90%;
+	height: 500px;
+	position: relative;
+}
+.card .avatar {
+	position: absolute;
+	left: 100px;
+	top: 90px;
+	width: 200px;
+	height: 200px;
+	border-radius: 50%;
+	cursor: pointer;
+}
+.card .avatar .circle {
+	box-sizing: border-box;
+	position: absolute;
+	border-radius: 50%;
+	transition: all 1.5s ease-in-out;
+	border: 1px solid;
+
+}
+.card  .avatar .circle:first-child {
+	left: -7px;
+	top: -6px;
+	width: 212px;
+	height: 212px;
+	border-color: transparent   transparent #AD7D52 transparent;
+}
+.card .avatar .circle:nth-child(2) {
+	left: -17px;
+	top: -16px;
+	width: 232px;
+	height: 232px;
+	border-color: transparent   transparent #AD7D52 transparent;
+}
+.card  .avatar:hover .circle:first-child {
+	 transform: rotate(360deg);
+}
+ .card .avatar:hover .circle:nth-child(2) {
+	 transform: rotate(-360deg);
+}
+.card  .avatar img {
+	width: inherit;
+	height: inherit;
+	display: block;
+	border-radius: inherit;
+}
+
+.card .info{
+	
+	position:absolute;
+	text-align: center;
+	top:320px;
+	left:150px;
+}
+span.big {
+	 font-size: 32px;
+	 font-weight: 600;
+}
+span.small {
+
+	 font-size: 24px;
+	 font-weight: 300;
+}
+
+
+.about{
+	width:70%;
+	position: absolute;
+	top:400px;
+	left:30px;
+	text-align: center;
+	overflow: hidden;
+}
+
+
+.btn{
+	margin:30px  0 0 50px ;
+	
+}
+
+
+.btn button{
+	border:none;
+	padding: 10px 50px;
+	margin:6px;
+	font-size:18px; 
+	
+	text-transform: uppercase;
+	
+}
+/* .btn button:focus {outline:0;} */
+
+
+
+</style>
