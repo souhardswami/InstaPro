@@ -25,7 +25,7 @@ SECRET_KEY = 'x-z=r@%e!=b^_j7$qoq66)k$2hkdf(@jz7j5+wlt8_6g9^h+k3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['myinstapro.herokuapp.com/','127.0.0.1']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
