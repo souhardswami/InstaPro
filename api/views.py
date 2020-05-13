@@ -123,7 +123,7 @@ class Post(APIView):
         
 
 
-        photo=Photos.objects.filter(user__id=userId)
+        photo=Photos.objects.filter(user__id=userId).order_by('-created_at')
         for i in photo:
             i.username=i.user.username
         
@@ -204,7 +204,7 @@ class userImage(APIView):
 
         
         
-        photos=Photos.objects.filter(user__in=value).order_by('created_at')
+        photos=Photos.objects.filter(user__in=value).order_by('-created_at')
         for i in photos:
             i.username=i.user.username
         
@@ -287,33 +287,12 @@ class Registor(APIView):
         # print(name,username,password)
         
         
-        new_user=Users.objects.create(name=name,username=username,password=password)
+        new_user=Users.objects.create(name=name,username=username,password=password,profile_img="fake/31.jpg")
 
         new_user.save()
-        return Response(data='successfully registor',status=status.HTTP_201_CREATED)
+        return Response(data='successfullyregistor',status=status.HTTP_201_CREATED)
 
 
-
-class EditProfile(APIView):
-
-    def put(self,request,pk):
-        
-
-
-        user=Users.objects.get(id=pk)
-
-
-        if("name" in request.data):
-            user.name=request.data['name']            
-        if("username" in request.data):
-            user.username=request.data['username']            
-        if("password" in request.data):
-            user.password=request.data['password']            
-        if("profile_img" in request.data):
-            user.profile_img=request.data['profile_img'] 
-
-        user.save()      
-        return Response(data='succfully edited',status=status.HTTP_200_OK)     
 
 
 
@@ -322,11 +301,21 @@ class EditProfile(APIView):
 class NewPost(APIView):
 
     def post(self,request,format=None):
+        print(request.data)
+
+
 
         user=Users.objects.get(id=request.data['user'])
         image_url=request.data['image_url']
-        tag=request.data['tag']
 
+        # i have no idea how to handle this so temp method
+        image_url=image_url[28:]
+                
+        
+
+
+        
+        tag=request.data['tag']
         photopost=Photos.objects.create(user=user,image_url=image_url,tag=tag)
         photopost.save()
 
@@ -337,6 +326,14 @@ class NewPost(APIView):
 class NewComment(APIView):
 
     def post(self,request,format=None):
+
+
+
+        
+
+
+        
+        
 
         user=Users.objects.get(id=request.data['user'])
         photo=Photos.objects.get(id=request.data['photo'])
@@ -366,3 +363,27 @@ class NewComment(APIView):
 
 
 
+
+
+# future task
+
+# class EditProfile(APIView):
+
+#     def put(self,request,pk):
+        
+
+
+#         user=Users.objects.get(id=pk)
+
+
+#         if("name" in request.data):
+#             user.name=request.data['name']            
+#         if("username" in request.data):
+#             user.username=request.data['username']            
+#         if("password" in request.data):
+#             user.password=request.data['password']            
+#         if("profile_img" in request.data):
+#             user.profile_img=request.data['profile_img'] 
+
+#         user.save()      
+#         return Response(data='succfully edited',status=status.HTTP_200_OK)     

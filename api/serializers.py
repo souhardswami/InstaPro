@@ -42,3 +42,25 @@ class LikeSerializer(serializers.ModelSerializer):
     class Meta:
         model=Like
         fields='__all__'
+
+
+
+
+
+
+
+
+from main.models import UploadedImage
+
+class UploadedImageSerializer(serializers.ModelSerializer):
+    """
+    Serializer for the UPloadedImage Model
+    Provides the pk, image, thumbnail, title and description
+    """
+    class Meta:
+        model = UploadedImage
+        fields = ('image',)
+        
+
+
+

@@ -55,3 +55,33 @@ class Connection(models.Model):
     def __str__(self):
         return f'{self.follower}     ->   -> ->  {self.user}'
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+class UploadedImage(models.Model):
+    """
+    Provides a Model which contains an uploaded image aswell as a thumbnail
+    """
+    image = models.ImageField("Uploaded image", upload_to="fake/")
+
+    
+    # title and description
+    
+    
+
+    

@@ -18,6 +18,20 @@ from django.urls import path,include
 
 from . import views
 
+
+# ndcbndvgkVG
+
+
+from .viewsets import UploadedImagesViewSet
+from rest_framework import routers
+router = routers.DefaultRouter()
+router.register('images', UploadedImagesViewSet, 'images')
+from django.conf.urls import url
+
+# BFMHVJAVA,A
+
+
+
 urlpatterns = [
     
 
@@ -30,9 +44,15 @@ urlpatterns = [
     path('comments/',views.Comments.as_view()),
     path('likes/',views.Likes.as_view()),
     path('registor/',views.Registor.as_view()),
-    path('editprofile/<int:pk>',views.EditProfile.as_view()),
-    path('newpost/',views.NewPost.as_view()),
+    # path('editprofile/<int:pk>',views.EditProfile.as_view()),
+    # path('newpost/',views.NewPost.as_view()),    #future task
     path('newcomment/',views.NewComment.as_view()),
+    
+
+
+    url('', include(router.urls)),
     
     
 ]
+
+

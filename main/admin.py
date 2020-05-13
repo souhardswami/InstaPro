@@ -10,3 +10,6 @@ admin.site.register(Users)
 admin.site.register(Comment)
 admin.site.register(Like)
 admin.site.register(Connection)
+
+from .models import UploadedImage
+admin.site.register(UploadedImage)
