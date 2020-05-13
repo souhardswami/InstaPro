@@ -8,7 +8,7 @@
         <div id="likes" v-for="like in likes" :key="like.id">
                     <section>
                     
-                    <img :src="'http://localhost:8000'+like.profile_img" alt="">
+                    <img :src="'https://myinstapro.herokuapp.com'+like.profile_img" alt="">
                             <article>
                                 <!-- <p>
                                   {{comment.comment_text}}
