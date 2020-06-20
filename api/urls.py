@@ -28,7 +28,6 @@ router = routers.DefaultRouter()
 router.register('images', UploadedImagesViewSet, 'images')
 from django.conf.urls import url
 
-# BFMHVJAVA,A
 
 
 
@@ -47,6 +46,7 @@ urlpatterns = [
     # path('editprofile/<int:pk>',views.EditProfile.as_view()),
     # path('newpost/',views.NewPost.as_view()),    #future task
     path('newcomment/',views.NewComment.as_view()),
+
     
 
 

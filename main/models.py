@@ -47,6 +47,21 @@ class Like(models.Model):
     user=models.ForeignKey(Users,null=True,on_delete=models.SET_NULL)
 
 
+
+
+
+class TagHash(models.Model):
+    tagword=models.CharField(max_length=20,null=True)
+
+    def __str__(self):
+        return self.tagword
+
+
+class Tags(models.Model):
+    tagpar=models.ForeignKey(TagHash,null=True,on_delete=models.CASCADE)
+    photo=models.ForeignKey(Photos,null=True,on_delete=models.SET_NULL)
+
+
 class Connection(models.Model):
     user = models.ForeignKey(Users, related_name='following',on_delete=models.CASCADE)
     follower = models.ForeignKey(Users, related_name='follower',on_delete=models.CASCADE)

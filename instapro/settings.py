@@ -22,7 +22,8 @@ SECRET_KEY = 'x-z=r@%e!=b^_j7$qoq66)k$2hkdf(@jz7j5+wlt8_6g9^h+k3'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
+
 
 
 # Application definition
@@ -49,7 +50,7 @@ MIDDLEWARE = [
   
 
     'django.middleware.common.CommonMiddleware',
-     'whitenoise.middleware.WhiteNoiseMiddleware',
+    #  'whitenoise.middleware.WhiteNoiseMiddleware',
 
 
     'django.middleware.security.SecurityMiddleware',
