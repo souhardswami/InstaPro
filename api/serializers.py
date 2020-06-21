@@ -1,4 +1,4 @@
-from main.models import Users,Photos,Comment,Like
+from main.models import Users,Photos,Comment,Like,TagHash
 from rest_framework import serializers
 
 
@@ -30,6 +30,17 @@ class CommentSerializer(serializers.ModelSerializer):
     class Meta:
         model=Comment
         fields='__all__'
+
+class TagHashSerializer(serializers.ModelSerializer):
+
+    
+
+    
+
+    class Meta:
+        model=TagHash
+        fields='__all__'
+
 
 
 class LikeSerializer(serializers.ModelSerializer):

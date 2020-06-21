@@ -44,7 +44,7 @@ urlpatterns = [
     path('likes/',views.Likes.as_view()),
     path('registor/',views.Registor.as_view()),
     # path('editprofile/<int:pk>',views.EditProfile.as_view()),
-    # path('newpost/',views.NewPost.as_view()),    #future task
+    path('newpost/',views.NewPost.as_view()),    #future task
     path('newcomment/',views.NewComment.as_view()),
 
     

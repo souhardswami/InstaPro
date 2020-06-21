@@ -8,7 +8,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 
 
-from main.models import Users,Photos,Connection,Comment,Like
+from main.models import Users,Photos,Connection,Comment,Like,TagHash,Tags
 
 from rest_framework import status
 
@@ -322,6 +322,59 @@ class NewPost(APIView):
 
         return Response(data="succesfully created",status=status.HTTP_201_CREATED)
         
+
+
+class NewPost(APIView):
+
+    def post(self,request,format=None):
+        print(request.data)
+
+
+
+        user=Users.objects.get(id=request.data['user'])
+        image_url=request.data['image_url']
+
+        # i have no idea how to handle this so temp method
+        image_url=image_url[28:]
+                
+        
+
+
+        
+        tag=request.data['tag']
+        tags=request.data['tags']
+        photopost=Photos.objects.create(user=user,image_url=image_url,tag=tag)
+        photopost.save()
+        
+
+        for tag in tags:
+
+            tag='#'+tag
+            res_object=TagHash.objects.filter(tagword=tag)
+
+            if(res_object.count()<1):
+                res_object=TagHash.objects.create(tagword=tag)
+                res_object.save()
+            
+                taghased=Tags.objects.create(tagpar=res_object,photo=photopost)
+                
+                taghased.save()
+            
+            else:
+                res_object=res_object[0]
+                taghased=Tags.objects.create(tagpar=res_object,photo=photopost)
+                
+                taghased.save()
+
+
+        
+
+
+        return Response(data="succesfully created",status=status.HTTP_201_CREATED)
+        
+
+
+
 
 class NewComment(APIView):
 
