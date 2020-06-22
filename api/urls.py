@@ -46,6 +46,7 @@ urlpatterns = [
     # path('editprofile/<int:pk>',views.EditProfile.as_view()),
     path('newpost/',views.NewPost.as_view()),    #future task
     path('newcomment/',views.NewComment.as_view()),
+    path('newlike/',views.NewLike.as_view()), 
 
     
 

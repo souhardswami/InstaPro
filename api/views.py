@@ -298,31 +298,6 @@ class Registor(APIView):
 
 
 
-class NewPost(APIView):
-
-    def post(self,request,format=None):
-        print(request.data)
-
-
-
-        user=Users.objects.get(id=request.data['user'])
-        image_url=request.data['image_url']
-
-        # i have no idea how to handle this so temp method
-        image_url=image_url[28:]
-                
-        
-
-
-        
-        tag=request.data['tag']
-        photopost=Photos.objects.create(user=user,image_url=image_url,tag=tag)
-        photopost.save()
-
-
-        return Response(data="succesfully created",status=status.HTTP_201_CREATED)
-        
-
 
 class NewPost(APIView):
 
@@ -413,6 +388,47 @@ class NewComment(APIView):
 
         return Response(data='succfully edited',status=status.HTTP_200_OK)     
 
+
+
+
+
+class NewLike(APIView):
+
+    def post(self,request,format=None):
+
+
+
+        
+
+
+        
+        print(request)
+
+        
+        user_id=request.data['userId']
+        user=Users.objects.get(id=user_id)
+        img_id=request.data['imgId']
+        photo=Photos.objects.get(id=img_id)
+        new_like=Like.objects.create(photo=photo,user=user)
+        new_like.save()
+        
+
+
+        return Response(data="liked added",status=status.HTTP_201_CREATED)
+
+
+
+
+
+
+        
+
+
+
+
+
+
+        return Response(data='succfully edited',status=status.HTTP_200_OK)     
 
 
 
