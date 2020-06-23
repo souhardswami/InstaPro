@@ -47,6 +47,7 @@ urlpatterns = [
     path('newpost/',views.NewPost.as_view()),    #future task
     path('newcomment/',views.NewComment.as_view()),
     path('newlike/',views.NewLike.as_view()), 
+    path('tagdetail/',views.TagDetail.as_view()), 
 
     
 

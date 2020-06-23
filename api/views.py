@@ -235,6 +235,43 @@ class Search(APIView):
         return Response(serializer.data)
 
 
+
+class TagDetail(APIView):
+
+    def post(self,request,format=None):
+        
+
+        idd=request.data['idd']
+        # print(idd)
+
+        
+        tags=Tags.objects.filter(tagpar__id=idd)
+        photosId=[]
+        for tag in tags:
+            photosId.append(tag.photo.id)
+        # print(photosId)
+        
+        
+
+
+
+        photo=Photos.objects.filter(id__in=photosId)
+
+        for i in photo:
+            i.username="idk"
+
+        # print(photo)
+
+        serializer=PhotosSerializer(photo,many=True)
+        
+        return Response(serializer.data)
+        
+
+
+
+
+
+
 class Comments(APIView):
 
     def post(self,request,format=None):
