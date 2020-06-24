@@ -470,6 +470,26 @@ class NewLike(APIView):
 
 
 
+class CheckFollower(APIView):
+    def post(self,request,format=None):
+        print(request.data)
+
+        user=request.data['user']
+        check=request.data['check']
+
+        
+
+
+        follow=Connection.objects.filter(user__id=user,follower__id=check)
+        print(follow)
+        if(len(follow)>0):
+            print("yes")
+            return Response(data=True,status=status.HTTP_200_OK) 
+        else:
+            print("no")
+            return Response(data=False,status=status.HTTP_403_FORBIDDEN) 
+
+
 
 # future task
 

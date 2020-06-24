@@ -48,6 +48,8 @@ urlpatterns = [
     path('newcomment/',views.NewComment.as_view()),
     path('newlike/',views.NewLike.as_view()), 
     path('tagdetail/',views.TagDetail.as_view()), 
+    path('checkfollower/',views.CheckFollower.as_view()), 
+    
 
     
 
