@@ -49,6 +49,7 @@ urlpatterns = [
     path('newlike/',views.NewLike.as_view()), 
     path('tagdetail/',views.TagDetail.as_view()), 
     path('checkfollower/',views.CheckFollower.as_view()), 
+    path('unfollow/',views.UnFollow.as_view()), 
     
 
     
