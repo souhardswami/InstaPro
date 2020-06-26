@@ -10,6 +10,7 @@
               
         
         
+        <div class="first" :class="face1">
 
           <figure>
                   <div class="img-container">
@@ -27,6 +28,34 @@
                   </div>
                   
                 </figure>
+
+
+                
+        </div>
+
+
+
+
+      <div   class="second" :class="face2">
+
+           
+        <h3>  Tag's </h3>
+
+        <div v-for="tagg in tags" :key="tagg" class="chip">
+          
+          {{tagg}}
+          <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+        </div>
+
+        <br>
+
+        <input v-model="tag">
+        <button @click="enter">enter</button>
+
+
+
+      </div>
+            <button @click="next"> {{buttonswap}}</button>
             <button id="submit" @click="onUpload">submit</button>
             
 
@@ -44,6 +73,10 @@ export default {
       data() {
           return {
             selectedFile: null,
+            face1:'front',
+            face2:'back',
+            tag:'',
+            tags:[],
             item:{
               image : null,
               image_url: null,
@@ -52,8 +85,39 @@ export default {
                   },
           }
         },
+
+      computed:{
+        
+
+
+        buttonswap() {
+
+          if(this.face1=='front'){
+              return 'next'
+          }
+          else{
+            return 'prev'
+          }
+
+        }
+
+      },
+
         
       methods: {
+        enter(){
+          this.tags.push(this.tag),
+          this.tag=''
+        },
+
+        next(){
+          // simple swapping
+          var temp;
+          temp=this.face1,
+          this.face1=this.face2,
+          this.face2=temp
+
+        },
               onFileChanged (event) {
                   this.selectedFile = event.target.files[0]
                   console.log(this.selectedFile)
@@ -66,7 +130,7 @@ export default {
               onUpload() {
                       const formData = new FormData()
                       formData.append('image', this.selectedFile, this.selectedFile.name)
-                      axios.post('https://myinstapro.herokuapp.com/api/images/', formData)
+                      axios.post('http://127.0.0.1:8000/api/images/', formData)
                       .then(res=>{
 
                        console.log(res.data.image)
@@ -79,7 +143,7 @@ export default {
 
 
 
-                fetch('https://myinstapro.herokuapp.com/api/newpost/',{
+                fetch('http://127.0.0.1:8000/api/newpost/',{
                 
                     method: 'POST',
                     headers: {
@@ -89,7 +153,8 @@ export default {
                       {
                         "image_url":this.item.image,
                         "user":this.item.user.id,
-                        "tag":this.item.tag
+                        "tag":this.item.tag,
+                        "tags":this.tags
                       }
 
                     ),
@@ -136,6 +201,49 @@ figure{
   position: relative;
   
   
+}
+
+.second{
+  font-size: 30px;
+  position: relative;
+  top:-250px;
+  left:120px;
+
+  
+}
+
+.front{
+  
+  transform: rotateY(0);
+}
+
+
+.back{
+  transform: rotateY(90deg);
+}
+.chip {
+  display: inline-block;
+  padding: 0 25px;
+  height: 20px;
+  font-size: 14px;
+  line-height: 20px;
+  border-radius: 15px;
+  background-color: #f1f1f1;
+}
+
+
+
+.closebtn {
+  padding-left: 10px;
+  color: #888;
+  font-weight: bold;
+  float: right;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.closebtn:hover {
+  color: #000;
 }
 
 

@@ -1,11 +1,12 @@
 <template>
     <div class="search">
         <div id="wrap">
+          
             <input   v-model="search" type="text" placeholder="what's  ?">
             <input    @click="res" type="submit">
         </div >
         <div id="result">
-            <div   v-for="user in   result" :key="user.id">
+            <div  v-show="notHash" v-for="user in result" :key="user.id">
             
 
                 <div class="card">
@@ -20,7 +21,29 @@
                        nearest  future task 
                     </div>
                 </div>
+
+
             </div>
+            <div  v-show="Hash" v-for="tag in result" :key="tag.id">
+            
+
+                <div class="card">
+                    <div class="picture">
+                        <h1 style="font-size:100px; margin-top:-1px;">#</h1>
+                    </div>
+                    <div class="team-content">
+                        <h3 class="name">{{tag.tagword}}</h3>
+                        
+                    </div>
+                    <div class="future">
+                       nearest  future task 
+                    </div>
+                </div>
+
+
+            </div>
+
+
 
 
         </div>
@@ -34,7 +57,29 @@ export default {
         return{
             search:'',
             result:[]
+            
         }
+    },
+    computed:{
+      notHash(){
+        if(this.search[0]=='#'){
+          return false
+        }
+        else{
+          return true
+        }
+
+      },
+      Hash(){
+        if(this.search[0]=='#'){
+          return true
+        }
+        else{
+          return false
+        }
+
+      }
+      
     },
     methods:{
 
@@ -44,7 +89,7 @@ export default {
         res(){
         
             
-            fetch('https://myinstapro.herokuapp.com/api/search/',{
+            fetch('http://localhost:8000/api/search/',{
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
