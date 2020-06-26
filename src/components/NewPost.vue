@@ -39,23 +39,25 @@
       <div   class="second" :class="face2">
 
            
-        <h3>  Tag's </h3>
+        <h3 id="headline">  Tag's </h3>
+        <div id="chips">
 
-        <div v-for="tagg in tags" :key="tagg" class="chip">
-          
-          {{tagg}}
-          <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+            <div v-for="tagg in tags" :key="tagg" class="chip">
+              
+              {{tagg}}
+              <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+            </div>
         </div>
 
         <br>
 
-        <input v-model="tag">
-        <button @click="enter">enter</button>
+        <input v-model="tag" id="tag">
+        <button @click="enter" id="enter">ADD</button>
 
 
 
       </div>
-            <button @click="next"> {{buttonswap}}</button>
+            <button @click="next" id="prevnext"> {{buttonswap}}</button>
             <button id="submit" @click="onUpload">submit</button>
             
 
@@ -81,7 +83,7 @@ export default {
               image : null,
               image_url: null,
               user:this.$store.state.user[0],
-              tag:'editable'
+              tag:'put you post here'
                   },
           }
         },
@@ -93,10 +95,10 @@ export default {
         buttonswap() {
 
           if(this.face1=='front'){
-              return 'next'
+              return 'next >>'
           }
           else{
-            return 'prev'
+            return '<< prev'
           }
 
         }
@@ -179,7 +181,7 @@ export default {
 .newpost{
   width:25%;
   margin:0 auto;
-  height: 87vh;
+  height: 70vh;
   padding-top:120px;
 
 
@@ -207,7 +209,12 @@ figure{
   font-size: 30px;
   position: relative;
   top:-250px;
-  left:120px;
+  /* left:120px; */
+
+  height: 40vh;
+
+  border-top: thick double black;
+  border-bottom: thick double black;
 
   
 }
@@ -221,14 +228,61 @@ figure{
 .back{
   transform: rotateY(90deg);
 }
+
+#headline{
+  margin-top:10px;
+  margin-left:130px;
+}
+
+
+#prevnext{
+  border: none;
+  outline: none;
+  font-size: 14px;
+  padding:8px 14px;
+  position: absolute;
+  top:660px;
+  left:650px;
+  
+}
+#enter{
+  border: none;
+  outline: none;
+  font-size: 12px;
+  padding:5px 10px;
+  position: absolute;
+  top:268px;
+  left:240px;
+  
+}
+
+#tag{
+
+  position: absolute;
+  top:270px;
+  /* left:650px; */
+  left:60px;
+
+}
+
 .chip {
   display: inline-block;
+  
   padding: 0 25px;
   height: 20px;
   font-size: 14px;
   line-height: 20px;
   border-radius: 15px;
+  margin-left:20px;
   background-color: #f1f1f1;
+  
+  
+}
+
+#chips{
+  height: 100px;
+  border:double #aaaaaa thick;
+  overflow:scroll;
 }
 
 

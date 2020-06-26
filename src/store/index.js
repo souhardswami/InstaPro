@@ -12,7 +12,7 @@ export default new Vuex.Store({
     user:[],
     
     myphotos:[],
-    btn:-1
+    btn:1
     
   },
   mutations: {
