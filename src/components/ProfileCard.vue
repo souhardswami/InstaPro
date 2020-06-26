@@ -7,7 +7,7 @@
 						<div class="avatar">
 							<div class="circle"></div>
 							<div class="circle"></div>
-							<img :src="'http://localhost:8000'+this.$store.state.user[0].profile_img" alt=""></div>
+							<img :src="'https://myinstapro.herokuapp.com'+this.$store.state.user[0].profile_img" alt=""></div>
 						
 						<div class="info" >
 							<span class="big">{{this.$store.state.user[0].username}} </span> <br/>

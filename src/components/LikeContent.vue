@@ -9,7 +9,7 @@
    
                 
                 
-                <img :src="'http://localhost:8000'+currentImg" >
+                <img :src="'https://myinstapro.herokuapp.com'+currentImg" >
                 
             </div>
             <div class="right">

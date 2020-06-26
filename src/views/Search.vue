@@ -11,7 +11,7 @@
 
                 <div class="card">
                     <div class="picture">
-                        <img class="img-fluid" :src="'http://localhost:8000'+user.profile_img">
+                        <img class="img-fluid" :src="'https://myinstapro.herokuapp.com'+user.profile_img">
                     </div>
                     <div class="team-content">
                         <h3 class="name">{{user.username}}</h3>

@@ -8,7 +8,7 @@
         <div id="comments" v-for="comment in comments" :key="comment.id">
                     <section>
                     
-                    <img :src="'http://localhost:8000'+comment.profile_img" alt="">
+                    <img :src="'https://myinstapro.herokuapp.com'+comment.profile_img" alt="">
                             <article>
                                 <p>
                                   {{comment.comment_text}}
