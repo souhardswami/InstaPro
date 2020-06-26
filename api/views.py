@@ -508,8 +508,31 @@ class UnFollow(APIView):
         print(new_follow)
         
         return Response(data=True,status=status.HTTP_200_OK) 
+
+
+
+
+
+class Follow(APIView):
+    def post(self,request,format=None):
+        print(request.data)
+
+        user=request.data['user']
+        user=Users.objects.get(id=user)
+        check=request.data['check']
+        check=Users.objects.get(id=check)
+
         
 
+
+        new_follow=Connection.objects.create(user=user,follower=check)
+        new_follow.save()
+        print(new_follow)
+        
+        return Response(data=True,status=status.HTTP_200_OK) 
+        
+
+        
 # future task
 
 # class EditProfile(APIView):

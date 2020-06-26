@@ -50,6 +50,7 @@ urlpatterns = [
     path('tagdetail/',views.TagDetail.as_view()), 
     path('checkfollower/',views.CheckFollower.as_view()), 
     path('unfollow/',views.UnFollow.as_view()), 
+    path('follow/',views.Follow.as_view()), 
     
 
     
