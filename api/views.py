@@ -329,7 +329,23 @@ class Registor(APIView):
         new_user.save()
         return Response(data='successfullyregistor',status=status.HTTP_201_CREATED)
 
+    def put(self,request,format=None):
+        print(request.data)
+        print("put")
+        
+        name=request.data['name']
+        username=request.data['username']
+        password=request.data['password']
+        profile_img=request.data['profile_img']
+        profile_img=profile_img[28:]
+        
+        
+        
+        new_user=Users.objects.get(name=name,username=username,password=password)
+        new_user.profile_img=profile_img
 
+        new_user.save()
+        return Response(data="/media/"+profile_img,status=status.HTTP_201_CREATED)
 
 
 
