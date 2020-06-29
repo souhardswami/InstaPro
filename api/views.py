@@ -29,6 +29,8 @@ class Follower(APIView):
 
     
     def post(self, request, format=None):
+
+        
         
 
 
@@ -80,34 +82,6 @@ class Following(APIView):
 
   
 
-
-
-
-class Follower(APIView):
-    
-    
-
-    
-    def post(self, request, format=None):
-        
-
-
-        userId=request.data['user']
-        
-
-        user=Connection.objects.filter(user=userId)
-
-        value=[]
-        for i in user:
-            value.append(i.follower.id)
-        
-        
-        user=Users.objects.filter(id__in=value)
-        
-        
-
-        serializer = UserSerializer(user,many=True)
-        return Response(serializer.data)
 
 
 class Post(APIView):
@@ -496,7 +470,7 @@ class CheckFollower(APIView):
         
 
 
-        follow=Connection.objects.filter(user__id=user,follower__id=check)
+        follow=Connection.objects.filter(user__id=check,follower__id=user)
         print(follow)
         if(len(follow)>0):
             print("yes")
@@ -519,7 +493,7 @@ class UnFollow(APIView):
         
 
 
-        new_follow=Connection.objects.get(user=user,follower=check)
+        new_follow=Connection.objects.get(user=check,follower=user)
         new_follow.delete()
         print(new_follow)
         
@@ -541,7 +515,7 @@ class Follow(APIView):
         
 
 
-        new_follow=Connection.objects.create(user=user,follower=check)
+        new_follow=Connection.objects.create(user=check,follower=user)
         new_follow.save()
         print(new_follow)
         
