@@ -201,12 +201,22 @@ class Search(APIView):
         from django.db.models import Q
 
 
-        user=Users.objects.filter(Q(name__contains=item) | Q(username__contains=item))
+        if(item[0]!='#'):
+            user=Users.objects.filter(Q(name__contains=item) | Q(username__contains=item))
+            serializer = UserSerializer(user,many=True)
+        
+            return Response(serializer.data)
+        else:
+            print(item)
+            user=TagHash.objects.filter(Q(tagword__contains=item) )
+            serializer = TagHashSerializer(user,many=True)
+
+            print(serializer)
+        
+            return Response(serializer.data)
         
 
-        serializer = UserSerializer(user,many=True)
-        
-        return Response(serializer.data)
+
 
 
 
