@@ -6,6 +6,7 @@
         
 
         <div id="likes" v-for="like in likes" :key="like.id">
+          
                     <section>
                     
                     <img :src="'https://myinstapro.herokuapp.com'+like.profile_img" alt="">
@@ -33,6 +34,25 @@ export default {
       likes:[]
     }
   },
+  methods:{
+
+    check(){
+        
+        for (let i=0;i<this.likes.length;i++){
+          if(this.likes[i].username=='ale123'){
+            console.log("j")
+          }
+        }
+
+        }
+
+    
+
+  },
+
+  
+
+
   mounted(){
     
     
@@ -48,6 +68,9 @@ export default {
           .then((data)=>{
               console.log(data)
               this.likes=data
+              this.check()
+
+            
               
               
               

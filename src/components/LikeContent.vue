@@ -20,8 +20,8 @@
                                         
                     <div class="form-group">
                         
-                        <img id="img" src="https://cdn3.iconfinder.com/data/icons/pyconic-icons-1-2/512/heart-outline-512.png" >
-                        <img id="img" src="https://cdn3.iconfinder.com/data/icons/cosmo-color-basic-1/40/favorite-512.png"/>
+                        <img class="img" id="img1" src="https://cdn3.iconfinder.com/data/icons/pyconic-icons-1-2/512/heart-outline-512.png" >
+                        <img class="img" id="img2" src="https://cdn3.iconfinder.com/data/icons/cosmo-color-basic-1/40/favorite-512.png"/>
                     </div>
                                     
             </div>
@@ -96,19 +96,28 @@ export default {
         
 
                     
-            
-        #img{
-            width:40px;
-            height:40px;
-        }
-
-        
-
         .form-group {
             margin-top: 30px;
             width: 100%;
             text-align: center;
+            
         }
+            
+        .img{
+            width:40px;
+            height:40px;
+            
+        }
+
+        
+        #img2{
+            margin-left: -40px;
+            transform: rotateY(90deg);
+        }
+
+        
+
+        
         
 
        

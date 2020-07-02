@@ -23,7 +23,7 @@
                         </div>
                         <div class="A" id="proimg">
 
-                          <router-link  to="/profile">
+                          <router-link  to="/profile/1">
                           
                           <img v-if="this.$store.state.auth==-1" src="https://cdn.onlinewebfonts.com/svg/img_518099.png">
                           <img v-else :src="'https://myinstapro.herokuapp.com'+this.$store.state.user[0].profile_img">

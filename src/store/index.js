@@ -12,7 +12,8 @@ export default new Vuex.Store({
     user:[],
     
     myphotos:[],
-    btn:1
+    btn:1,
+    ondemand:{}
     
   },
   mutations: {
@@ -32,6 +33,10 @@ export default new Vuex.Store({
     
     set_picId(state,val){
       state.picId=val
+    },
+    set_ondemand(state,val){
+      state.ondemand=val
+      console.log(state.ondemand)
     }
     
   },

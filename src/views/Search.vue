@@ -1,5 +1,7 @@
 <template>
     <div class="search">
+
+      
         <div id="wrap">
           
             <input   v-model="search" type="text" placeholder="what's  ?">
@@ -18,7 +20,8 @@
                         <h4 class="title">{{user.name}}</h4>
                     </div>
                     <div class="future">
-                       nearest  future task 
+                       <button id="profile-btn" @click="showprofile(user.id)"> profile</button>
+               
                     </div>
                 </div>
 
@@ -47,17 +50,37 @@
 
 
         </div>
+
+
+        <div id="myModal" class="modal" v-if="show">
+                                    <div class="modal-content">
+                                      
+                                      
+                                       
+                                        
+                                        <span class="close" @click="close" >&times;</span>
+                                      
+                                       
+                                        <v/>
+                                        
+                                        
+                                    </div>
+                        </div>
     </div>
 </template>
 
 <script>
+import v from './Profile.vue'
 export default {
+  components:{
+    v
+  },
 
     data(){
         return{
             search:'',
-            result:[]
-            
+            result:[],
+            show:false
         }
     },
     computed:{
@@ -104,6 +127,22 @@ export default {
                 
                 
                     })
+        },
+        showprofile(idd){
+
+          
+
+          for (let i of this.result){
+            if(i.id==idd){
+              this.$store.commit('set_ondemand',i)
+              console.log("hhhh")
+              this.show=true
+            }
+          }
+
+        },
+        close(){
+          this.show=false
         }
 
     }
@@ -151,6 +190,18 @@ input[type="text"] {
 }
 
 
+#profile-btn{
+  
+	border:none;
+	padding: 10px 20px;
+	margin:6px;
+	font-size:18px; 
+	
+	text-transform: uppercase;
+	
+
+  
+}
 
 input[type="submit"] {
   height: 67px;
@@ -279,5 +330,53 @@ height: 250px;
 
 
 
+
+.modal {
+  display: block; 
+  position: fixed; 
+  z-index: 1; 
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%; 
+  overflow: auto; 
+  
+  background-color: rgba(0,0,0,0.4); 
+}
+.modal-content {
+  background-color: #fefefe;
+  margin: 2% auto; 
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; 
+}
+
+
+form input[type="text"],
+form input[type="password"] {
+  max-width:300px;
+  width: 80%;
+  line-height:3em;
+  font-family: 'Ubuntu', sans-serif;
+  margin:1em 2em;
+  border-radius:5px;
+  border:2px solid #f2f2f2;
+  outline:none;
+  padding-left:10px;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
 
 </style>

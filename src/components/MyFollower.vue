@@ -30,7 +30,16 @@ export default {
         return {
             users:[]
         }
-    },
+	},
+	
+	computed:{
+
+		current(){
+			
+			return  Object.keys(this.$store.state.ondemand).length==0 ? this.$store.state.user[0] :this.$store.state.ondemand
+		}
+
+	},
     
 
    
@@ -44,7 +53,7 @@ export default {
               headers: {
                 'Content-Type': 'application/json',
               },
-              body: JSON.stringify({"user":this.$store.state.user[0].id}),
+              body: JSON.stringify({"user":this.current.id}),
               })
       .then(res=> res.json())
       .then((data)=>{

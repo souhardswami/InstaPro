@@ -1,32 +1,39 @@
 <template>
     		<div class="profilecard">
 
-				
 
 					<div class="card">
 						<div class="avatar">
 							<div class="circle"></div>
 							<div class="circle"></div>
-							<img :src="'https://myinstapro.herokuapp.com'+this.$store.state.user[0].profile_img" alt=""></div>
+							<img :src="'https://myinstapro.herokuapp.com'+current.profile_img" alt=""></div>
 						
 						<div class="info" >
-							<span class="big">{{this.$store.state.user[0].username}} </span> <br/>
-							<span class="small">{{this.$store.state.user[0].name}}</span> </div>
+							<span class="big">{{current.username}} </span> <br/>
+							<span class="small">{{current.name}}</span> </div>
 												
 						<div class="about">
 							<span>Lorem  dolor sit amet consectetur adipisicing elit.Incidunt, fugiat explicabo quosex error repellendus unde laborum vel numquam</span></div>
 							</div>
 					<div class="btn">
 						
-						
 						<button class="post" @click="post" >post</button>
 						<button class="followers" @click="followers">followers</button>
-						<button class="following" @click="following">following</button></div>
+						<button class="following" @click="following">following</button></div> 
 			</div>
 </template>
 
 <script>
 export default {
+
+	computed:{
+
+		current(){
+			
+			return  Object.keys(this.$store.state.ondemand).length==0 ? this.$store.state.user[0] :this.$store.state.ondemand
+		}
+
+	},
 	
 	methods:{
 		post(){

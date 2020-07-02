@@ -34,6 +34,11 @@ export default {
 				return 'FOLLOWING'
 			}
 		}
+	},
+	mounted(){
+		if(this.$route.params.id==1){
+		this.$store.commit('set_ondemand',{})
+		}
 	}
 }
 </script>
