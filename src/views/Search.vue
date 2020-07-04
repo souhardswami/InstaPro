@@ -13,7 +13,7 @@
 
                 <div class="card">
                     <div class="picture">
-                        <img class="img-fluid" :src="'https://myinstapro.herokuapp.com'+user.profile_img">
+                        <img  :src="'https://myinstapro.herokuapp.com'+user.profile_img">
                     </div>
                     <div class="team-content">
                         <h3 class="name">{{user.username}}</h3>
@@ -27,19 +27,19 @@
 
 
             </div>
-            <div  v-show="Hash" v-for="tag in result" :key="tag.id">
+            <div  v-show="Hash" v-for="tag in result" :key="'tag-'+tag.id">
             
 
                 <div class="card">
                     <div class="picture">
-                        <h1 style="font-size:100px; margin-top:-1px;">#</h1>
+                          <img  src="https://static.vecteezy.com/system/resources/previews/000/337/614/non_2x/vector-hash-icon.jpg">
                     </div>
                     <div class="team-content">
                         <h3 class="name">{{tag.tagword}}</h3>
                         
                     </div>
                     <div class="future">
-                       nearest  future task 
+                       <button id="profile-btn"  @click="showtag(tag.id)">explore</button>
                     </div>
                 </div>
 
@@ -61,7 +61,24 @@
                                         <span class="close" @click="close" >&times;</span>
                                       
                                        
-                                        <v/>
+                                        <ProfileCopy/>
+                                        
+                                        
+                                    </div>
+                        </div>
+        <div id="myModal" class="modal" v-if="show2">
+                                    <div class="modal-content">
+                                      
+                                      
+                                       
+                                        <h1>{{search}}</h1>
+                                        <div class="close" @click="close2" >&times;</div>
+                                      
+                                       
+                                        
+
+
+                                        <ShowTag :tagword="sendidd"/>
                                         
                                         
                                     </div>
@@ -70,17 +87,21 @@
 </template>
 
 <script>
-import v from './Profile.vue'
+import ProfileCopy from './Profile.vue'
+import ShowTag from '@/components/ShowTag.vue'
 export default {
   components:{
-    v
+    ProfileCopy,
+    ShowTag
   },
 
     data(){
         return{
             search:'',
             result:[],
-            show:false
+            show:false,
+            show2:false,
+            sendidd:''
         }
     },
     computed:{
@@ -141,8 +162,15 @@ export default {
           }
 
         },
+        showtag(idd){
+          this.sendidd=idd,
+          this.show2=true
+        },
         close(){
           this.show=false
+        },
+        close2(){
+          this.show2=false
         }
 
     }
@@ -300,10 +328,12 @@ height: 250px;
   transition: all 0.9s ease 0s;
 }
 
+
 .card:hover .picture img {
   box-shadow: 0 0 0 14px #f7f5ec;
   transform: scale(0.7);
 }
+
 
 .card .title {
   display: block;
@@ -339,7 +369,7 @@ height: 250px;
   top: 0;
   width: 100%;
   height: 100%; 
-  overflow: auto; 
+  overflow-x: scroll; 
   
   background-color: rgba(0,0,0,0.4); 
 }
@@ -366,10 +396,18 @@ form input[type="password"] {
 }
 
 .close {
+  position: fixed;
+  right: 10%;
+  top:60px;
   color: #aaa;
   float: right;
   font-size: 28px;
+  padding-left:10px;
+  padding-right:10px;
   font-weight: bold;
+  border: solid #AD7D52 2px;
+  border-radius:50%; 
+  transition: transform .25s;
 }
 
 .close:hover,
@@ -377,6 +415,7 @@ form input[type="password"] {
   color: black;
   text-decoration: none;
   cursor: pointer;
+  transform: rotate(360deg);
 }
 
 </style>
