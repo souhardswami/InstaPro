@@ -51,8 +51,8 @@
 
         </div>
 
-
-        <div id="myModal" class="modal" v-if="show">
+<transition name="slide" appear>
+        <div class="modal" v-if="show">
                                     <div class="modal-content">
                                       
                                       
@@ -66,7 +66,9 @@
                                         
                                     </div>
                         </div>
-        <div id="myModal" class="modal" v-if="show2">
+</transition>
+    <transition name="slide" appear>
+        <div  class="modal" v-if="show2">
                                     <div class="modal-content">
                                       
                                       
@@ -83,6 +85,7 @@
                                         
                                     </div>
                         </div>
+    </transition>
     </div>
 </template>
 
@@ -417,5 +420,40 @@ form input[type="password"] {
   cursor: pointer;
   transform: rotate(360deg);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+.fade-enter-active,
+.fade-leave-active {
+ transition: opacity .1s;
+}
+
+.fade-enter,
+.fade-leave-to {
+ opacity: 0;
+}
+
+.slide-enter-active,
+.slide-leave-active {
+ transition: transform .5s;
+}
+
+.slide-enter,
+.slide-leave-to {
+ transform: translateY(-100%) translateX(100%);
+}
+
+
+
 
 </style>
