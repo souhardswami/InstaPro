@@ -14,14 +14,14 @@
             </div>
             <div class="right">
                     <h1> -----Liked By----- </h1>
-                    <LikeList/>
+                    <LikeList :name="this.$store.state.user[0].username" @liked="dontshow"/>
                     
                 
                                         
-                    <div class="form-group">
+                    <div class="form-group" v-if="visible">
                         
-                        <img class="img" id="img1" src="https://cdn3.iconfinder.com/data/icons/pyconic-icons-1-2/512/heart-outline-512.png" >
-                        <img class="img" id="img2" src="https://cdn3.iconfinder.com/data/icons/cosmo-color-basic-1/40/favorite-512.png"/>
+                        
+                     <button>   <img class="img" id="img1" src="https://cdn3.iconfinder.com/data/icons/pyconic-icons-1-2/512/heart-outline-512.png" @click="like" ></button>
                     </div>
                                     
             </div>
@@ -38,18 +38,58 @@ export default {
     components:{
         LikeList
     },
+    data(){
+
+        return{
+            
+        visible:true,
+
+        send:{
+            
+            userId:'',
+            imgId:''
+            }
+        }
+    },
+
     computed:{
         currentImg(){
-
+            
             return this.$store.state.currentImg
 
         }
     },
     methods:{
-        backbutton(){
-            this.$router.push('about')
+        dontshow(){
+            this.visible=false
+        },
+        like(){
+            console.log("c");
+            this.send.userId=this.$store.state.user[0].id
+            this.send.imgId=this.$store.state.picId
+            
+
+            fetch('http://127.0.0.1:8000/api/newlike/',{
+                method: 'POST',
+                headers:
+                         {
+                             'Content-Type': 'application/json'
+                        },
+                body: JSON.stringify(
+                    this.send
+
+                    ),
+                    })
+      .then(res=> res.json())
+      .then((data)=>{
+          console.log(data)
+          this.visible=false
+          
+          })
+          }
+
         }
-    }
+    
 }
 </script>
 
@@ -107,13 +147,11 @@ export default {
             width:40px;
             height:40px;
             
+            
+            
         }
-
         
-        #img2{
-            margin-left: -40px;
-            transform: rotateY(90deg);
-        }
+        
 
         
 

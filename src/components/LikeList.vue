@@ -9,11 +9,10 @@
           
                     <section>
                     
+                    
                     <img :src="'https://myinstapro.herokuapp.com'+like.profile_img" alt="">
                             <article>
-                                <!-- <p>
-                                  {{comment.comment_text}}
-                                </p> -->
+                                
                                  <span class="by"><a href="#" class="author" >{{like.username}}</a></span>
                             </article>
                     
@@ -29,18 +28,28 @@
 export default {
 
 
+  props:['name'],
+
+
   data(){
     return{
       likes:[]
     }
   },
+  
+    
+    
+  
   methods:{
 
     check(){
         
         for (let i=0;i<this.likes.length;i++){
-          if(this.likes[i].username=='ale123'){
-            console.log("j")
+          
+          if(this.likes[i].username==this.name){
+            
+
+            this.$emit('liked')
           }
         }
 
@@ -54,10 +63,9 @@ export default {
 
 
   mounted(){
-    
-    
+  
 
-     fetch('https://myinstapro.herokuapp.com/api/likes/',{
+     fetch('http://127.0.0.1:8000/api/likes/',{
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
