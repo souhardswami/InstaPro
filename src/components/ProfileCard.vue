@@ -10,10 +10,17 @@
 						
 						<div class="info" >
 							<span class="big">{{current.username}} </span> <br/>
-							<span class="small">{{current.name}}</span> </div>
+							<span class="small">{{current.name}}</span> 
+							<br>
+						</div>
 												
 						<div class="about">
-							<span>Lorem  dolor sit amet consectetur adipisicing elit.Incidunt, fugiat explicabo quosex error repellendus unde laborum vel numquam</span></div>
+							
+						
+							<button  v-if="show" class="unfollow-follow" @click="following">jnbjnbgjbntjnjnbn</button>
+						
+							<br>
+							<span> Magni corrupti perspiciatis eligendi veniam. Rem enim iusto, rerum voluptatibus eum eius! Eos accusamus laboriosam excepturi soluta vitae. Quod iure cumque odio.</span></div>
 							</div>
 					<div class="btn">
 						
@@ -25,13 +32,24 @@
 
 <script>
 export default {
+	
 
 	computed:{
 
 		current(){
 			
 			return  Object.keys(this.$store.state.ondemand).length==0 ? this.$store.state.user[0] :this.$store.state.ondemand
-		}
+		},
+		show(){
+			if(Object.keys(this.$store.state.ondemand).length!=0){
+				return true
+				
+			}
+			else{
+				return false
+			}
+		},
+		
 
 	},
 	
@@ -159,7 +177,18 @@ span.small {
 	text-transform: uppercase;
 	
 }
-/* .btn button:focus {outline:0;} */
+.unfollow-follow{
+	border:none;
+	padding: 5px 10px;
+	margin:3px;
+	margin-left:30px;
+	font-size:14px; 
+	
+	text-transform: uppercase;
+	color: red;
+
+}
+
 
 
 
