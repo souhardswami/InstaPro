@@ -1,15 +1,21 @@
 <template>
     <div class="Profilecontent">
+      {{show}}
+      {{this.$store.state.followunfollow}}
+      <div v-if="show">
       
-      
-      <div v-if="ind==1" class="post">
-         <MyPost/>
+        <div v-if="ind==1" class="post">
+          <MyPost/>
+        </div>
+        <div v-else-if="ind==2" class="follower">
+            <MyFollower/>
+        </div>
+        <div v-else-if="ind==3" class="following">
+            <MyFollowing/>
+        </div>
       </div>
-      <div v-else-if="ind==2" class="follower">
-          <MyFollower/>
-      </div>
-      <div v-else-if="ind==3" class="following">
-          <MyFollowing/>
+      <div v-else>
+        <h1> private content</h1>
       </div>
     </div>
 
@@ -30,11 +36,31 @@ export default {
     MyFollower,
     MyFollowing
   },
+  
   computed:{
     ind(){
       return this.$store.state.btn
-    }
+    },
+    show(){
+
+      
+      if(Object.keys(this.$store.state.ondemand).length==0 ){
+        return true
+      }
+      else{
+        
+        if(this.$store.state.followunfollow=="unfollower"){
+          return true
+        }
+        else{
+          return false
+        }
+      }
+      }
+    
   }
+  
+  
   
   
 }

@@ -17,7 +17,7 @@
 						<div class="about">
 							
 						
-							<button  v-if="show" class="unfollow-follow" @click="following">{{typeofuser}}</button>
+							<button  v-if="show" class="unfollow-follow" @click="followunfollow">{{typeofuser}}</button>
 						
 							<br>
 							<span> Magni corrupti perspiciatis eligendi veniam. Rem enim iusto, rerum voluptatibus eum eius! Eos accusamus laboriosam excepturi soluta vitae. Quod iure cumque odio.</span></div>
@@ -70,6 +70,49 @@ export default {
 		following(){
 			console.log('clicked')
 			this.$store.commit('set_btn',3)
+		},
+		followunfollow(){
+
+			if(this.typeofuser=='unfollower'){
+
+
+
+
+				fetch('http://127.0.0.1:8000/api/unfollow/',{
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+						},
+						body: JSON.stringify({"user":this.$store.state.user[0].id ,"check":this.$store.state.ondemand.id}),
+						})
+				.then(res=> res.json())
+				.then(()=>{
+					
+					this.typeofuser='follower'
+					this.$store.commit('set_followunfollow','follower')
+					
+						})
+					
+			}
+			else{
+
+							fetch('http://127.0.0.1:8000/api/follow/',{
+						method: 'POST',
+						headers: {
+							'Content-Type': 'application/json',
+						},
+						body: JSON.stringify({"user":this.$store.state.user[0].id ,"check":this.$store.state.ondemand.id}),
+						})
+				.then(res=> res.json())
+				.then(()=>{
+					
+					this.typeofuser='unfollower',
+					this.$store.commit('set_followunfollow','unfollower')
+					
+					
+						})
+			}
+
 		}
 
 	},
@@ -85,7 +128,15 @@ export default {
       .then((data)=>{
           
           if(data){
-			  this.typeofuser='unfollower'
+			  console.log(" njjbhlefkrfgufuy")
+			  this.typeofuser='unfollower',
+			  this.$store.commit('set_followunfollow','unfollower')
+			  
+		  }
+		  else{
+			  this.typeofuser='follower',
+			  this.$store.commit('set_followunfollow','follower')
+
 		  }
           
         

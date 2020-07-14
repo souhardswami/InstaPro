@@ -13,7 +13,8 @@ export default new Vuex.Store({
     
     myphotos:[],
     btn:1,
-    ondemand:{}
+    ondemand:{},
+    followunfollow:'follower'
     
   },
   mutations: {
@@ -37,6 +38,11 @@ export default new Vuex.Store({
     set_ondemand(state,val){
       state.ondemand=val
       console.log(state.ondemand)
+    },
+    set_followunfollow(state,val){
+      state.followunfollow=val
+      console.log(val)
+      console.log(state.followunfollow)
     }
     
   },
