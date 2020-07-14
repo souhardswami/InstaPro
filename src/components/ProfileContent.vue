@@ -1,7 +1,6 @@
 <template>
     <div class="Profilecontent">
-      {{show}}
-      {{this.$store.state.followunfollow}}
+      
       <div v-if="show">
       
         <div v-if="ind==1" class="post">
