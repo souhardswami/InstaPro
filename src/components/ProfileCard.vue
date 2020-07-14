@@ -17,7 +17,7 @@
 						<div class="about">
 							
 						
-							<button  v-if="show" class="unfollow-follow" @click="following">jnbjnbgjbntjnjnbn</button>
+							<button  v-if="show" class="unfollow-follow" @click="following">{{typeofuser}}</button>
 						
 							<br>
 							<span> Magni corrupti perspiciatis eligendi veniam. Rem enim iusto, rerum voluptatibus eum eius! Eos accusamus laboriosam excepturi soluta vitae. Quod iure cumque odio.</span></div>
@@ -32,7 +32,13 @@
 
 <script>
 export default {
-	
+	data(){
+		return {
+
+			typeofuser:"follower"
+
+		}
+	},
 
 	computed:{
 
@@ -66,6 +72,24 @@ export default {
 			this.$store.commit('set_btn',3)
 		}
 
+	},
+	mounted(){
+		fetch('http://127.0.0.1:8000/api/checkfollower/',{
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+			  body: JSON.stringify({"user":this.$store.state.user[0].id ,"check":this.$store.state.ondemand.id}),
+              })
+      .then(res=> res.json())
+      .then((data)=>{
+          
+          if(data){
+			  this.typeofuser='unfollower'
+		  }
+          
+        
+            })
 	}
 }
 </script>
