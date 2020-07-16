@@ -37,8 +37,6 @@ export default {
     }
   },
   
-    
-    
   
   methods:{
 
@@ -53,19 +51,10 @@ export default {
           }
         }
 
-        }
+        },
 
-    
-
-  },
-
-  
-
-
-  mounted(){
-  
-
-     fetch('http://127.0.0.1:8000/api/likes/',{
+        likelist(){
+          fetch('http://127.0.0.1:8000/api/likes/',{
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
@@ -84,6 +73,21 @@ export default {
               
             
                 })
+        }
+
+    
+
+  },
+
+  
+
+
+  mounted(){
+
+    this.likelist()
+  
+
+     
       
 
 

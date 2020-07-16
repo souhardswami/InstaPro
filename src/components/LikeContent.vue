@@ -10,11 +10,12 @@
                 
                 
                 <img :src="'https://myinstapro.herokuapp.com'+currentImg" >
+                    
                 
             </div>
             <div class="right">
                     <h1> -----Liked By----- </h1>
-                    <LikeList :name="this.$store.state.user[0].username" @liked="dontshow"/>
+                    <LikeList :name="this.$store.state.user[0].username"  @liked="dontshow"/>
                     
                 
                                         
@@ -25,6 +26,7 @@
                     </div>
                                     
             </div>
+
             
             
 
@@ -43,6 +45,7 @@ export default {
         return{
             
         visible:true,
+        trig:false,
 
         send:{
             
@@ -60,9 +63,11 @@ export default {
         }
     },
     methods:{
+        
         dontshow(){
             this.visible=false
         },
+
         like(){
             console.log("c");
             this.send.userId=this.$store.state.user[0].id
@@ -84,6 +89,7 @@ export default {
       .then((data)=>{
           console.log(data)
           this.visible=false
+          
           
           })
           }

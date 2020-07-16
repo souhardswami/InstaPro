@@ -29,7 +29,7 @@
                     
                     <img src="http://icons.iconarchive.com/icons/custom-icon-design/flatastic-1/256/comment-icon.png" @click="comment(pic.image_url,pic.id)"/>
                     
-                    <img src="https://cdn0.iconfinder.com/data/icons/social-media-outline-4/64/Facebook_Social_Media_User_Interface-15-512.png" alt="">
+                    <a href="https://www.instagram.com/?hl=en" target="_blank"><img src="https://cdn0.iconfinder.com/data/icons/social-media-outline-4/64/Facebook_Social_Media_User_Interface-15-512.png" alt=""></a>
                 </div>
               </figure>
               

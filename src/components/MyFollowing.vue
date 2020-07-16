@@ -48,7 +48,7 @@ export default {
       
 
 
-      fetch('https://myinstapro.herokuapp.com/api/following/',{
+      fetch('http://127.0.0.1:8000/api/following/',{
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
