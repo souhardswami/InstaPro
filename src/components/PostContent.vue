@@ -14,7 +14,7 @@
             </div>
             <div class="right">
                     <h1> -----COMMENT----- </h1>
-                    <CommentList/>
+                    <CommentList :trigger="trig"></CommentList>
                 
                                         
                     <div class="form-group">
@@ -36,6 +36,8 @@ export default {
 
     data(){
         return{
+
+            trig:false,
             
             send:{
             comment_text:'',
@@ -64,7 +66,7 @@ export default {
             console.log(this.send)
             
 
-            fetch('https://myinstapro.herokuapp.com/api/newcomment/',{
+            fetch('http://127.0.0.1:8000/api/newcomment/',{
                 method: 'POST',
                 headers:
                          {
@@ -77,7 +79,8 @@ export default {
       .then(res=> res.json())
       .then((data)=>{
           console.log(data)
-          this.send.comment_text=''
+          this.send.comment_text='',
+          this.trig=!this.trig
           })
           }
 

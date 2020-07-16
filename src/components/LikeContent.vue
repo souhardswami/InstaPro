@@ -15,7 +15,7 @@
             </div>
             <div class="right">
                     <h1> -----Liked By----- </h1>
-                    <LikeList :name="this.$store.state.user[0].username"  @liked="dontshow"/>
+                    <LikeList :name="this.$store.state.user[0].username" :triger="trig" @liked="dontshow"/>
                     
                 
                                         
@@ -88,8 +88,8 @@ export default {
       .then(res=> res.json())
       .then((data)=>{
           console.log(data)
-          this.visible=false
-          
+          this.visible=false,
+          this.trig=true
           
           })
           }

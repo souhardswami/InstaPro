@@ -25,6 +25,7 @@
 
 <script>
 export default {
+  props:['trigger'],
 
 
   data(){
@@ -32,10 +33,19 @@ export default {
       comments:[]
     }
   },
-  mounted(){
-    
-    
+  watch:{
+    trigger(){
+      this.commentlist()
+    }
+  },
+  methods:{
 
+    commentlist(){
+
+
+
+
+      
      fetch('https://myinstapro.herokuapp.com/api/comments/',{
               method: 'POST',
               headers: {
@@ -52,9 +62,12 @@ export default {
               
             
                 })
-      
 
+    }
 
+  },
+  mounted(){
+      this.commentlist()
   }
 }
 </script>

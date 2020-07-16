@@ -28,7 +28,7 @@
 export default {
 
 
-  props:['name'],
+  props:['name','triger'],
 
 
   data(){
@@ -36,7 +36,11 @@ export default {
       likes:[]
     }
   },
-  
+  watch:{
+    triger(){
+      this.likelist()
+    }
+  },
   
   methods:{
 
