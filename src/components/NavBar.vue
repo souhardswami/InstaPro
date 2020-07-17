@@ -7,23 +7,22 @@
                         
                         <div id="sign">insta-Pro</div>
                         <div class="circle"></div>
-                        
-                        <div class="A"><router-link class="rl" to="/">Home</router-link></div>
-                        <div class="A"><router-link class="rl" to="/about">About</router-link></div>
+                        <div class="A"><router-link class="rl" to="/" >Home</router-link></div>
+                        <div class="A"><router-link class="rl notActive" to="/about"  :disabled="notActive"  >About</router-link></div>
                         <div class="A">
-                          <router-link  to="/search">
+                          <router-link  to="/search" class="notActive" :disabled="notActive" >
                           <img src="https://img.icons8.com/pastel-glyph/64/000000/search--v1.png"/>
                           
                           </router-link>
                         </div>
                         <div class="A">
-                          <router-link to="/new">
+                          <router-link class="notActive" to="/new" :disabled="notActive" >
                           <img src="https://img.icons8.com/wired/64/000000/plus-2-math.png"/>
                           </router-link>
                         </div>
                         <div class="A" id="proimg">
 
-                          <router-link  to="/profile/1">
+                          <router-link   class="notActive"  to="/profile/1" :disabled="notActive" >
                           
                           <img v-if="this.$store.state.auth==-1" src="https://cdn.onlinewebfonts.com/svg/img_518099.png">
                           <img v-else :src="'https://myinstapro.herokuapp.com'+this.$store.state.user[0].profile_img">
@@ -41,6 +40,17 @@
   
 </template>
 
+<script>
+export default {
+  
+  computed: {
+        notActive(){
+          return  Object.keys(this.$store.state.user).length==0 ? true :false
+        }
+    }
+}
+</script>
+
 
 
 
@@ -48,6 +58,11 @@
 
 
 <style scoped>
+
+
+.notActive[disabled] {
+  pointer-events: none;
+}
 
   .navbar{
     margin:0 100px;
