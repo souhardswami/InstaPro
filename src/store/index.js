@@ -25,8 +25,11 @@ export default new Vuex.Store({
       state.myphotos=photos
     },
     set_user(state,user){
-      state.user=user,
-      state.auth=user.id
+      state.user=user
+      
+    },
+    set_auth(state,idd){
+      state.auth=idd
     },
     set_btn(state,val){
       state.btn=val

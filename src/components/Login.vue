@@ -74,6 +74,7 @@ export default {
           
           
           this.$store.commit('set_user',data),
+          this.$store.commit('set_auth',data.id),
           
           this.fetchimg(data[0].id)
         })
