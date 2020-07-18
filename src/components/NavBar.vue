@@ -25,7 +25,8 @@
                           <router-link   class="notActive"  to="/profile/1" :disabled="notActive" >
                           
                           <img v-if="this.$store.state.auth==-1" src="https://cdn.onlinewebfonts.com/svg/img_518099.png">
-                          <img v-else :src="'https://myinstapro.herokuapp.com'+this.$store.state.user[0].profile_img">
+                          <img v-else :src="'http://127.0.0.1:8000'+this.$store.state.user[0].profile_img">
+                          
                           </router-link>
                         </div>
                          
