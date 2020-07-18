@@ -6,10 +6,14 @@
 						<div class="avatar">
 							<div class="circle"></div>
 							<div class="circle"></div>
-							<img v-if="item.image_url" :src="item.image_url"/>
-					  		<img v-else :src="'http://127.0.0.1:8000'+img"/></div>
-							
+							<img class="userpic" v-if="item.image_url" :src="item.image_url"/>
+					  		<img class="userpic" v-else :src="'http://127.0.0.1:8000'+img"/>
+
 							<input type="file" @change="onFileChanged" accept="image/*" id="imgupload" />
+                      		<img id="uploadimg" src="https://img.icons8.com/wired/50/000000/upload.png"/>
+							
+
+						</div>
                       
 					  
 						<div class="info" >
@@ -271,7 +275,7 @@ export default {
  .card .avatar:hover .circle:nth-child(2) {
 	 transform: rotate(-360deg);
 }
-.card  .avatar img {
+.card  .avatar .userpic {
 	width: inherit;
 	height: inherit;
 	display: block;
@@ -335,5 +339,22 @@ span.small {
 
 
 
+#imgupload{
+  position: absolute;
+  top:205px;
+  left:195px;
+  width:55px;
+  z-index:2;
+  opacity: 0;
+}
+  
+#uploadimg{
+  position: absolute;
+  
+  top:190px;
+  left:200px;
+  
+  
+}
 
 </style>
