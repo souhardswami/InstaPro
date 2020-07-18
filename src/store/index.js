@@ -28,11 +28,6 @@ export default new Vuex.Store({
       state.user=user
       
     },
-    set_user_img(state,img){
-      console.log(img)
-      state.user[0].profile_img=img
-      
-    },
     set_auth(state,idd){
       state.auth=idd
     },

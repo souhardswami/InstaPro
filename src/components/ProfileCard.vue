@@ -6,12 +6,8 @@
 						<div class="avatar">
 							<div class="circle"></div>
 							<div class="circle"></div>
-							<img v-if="item.image_url" :src="item.image_url"/>
-					  		<img v-else :src="'http://127.0.0.1:8000'+img"/></div>
-							
-							<input type="file" @change="onFileChanged" accept="image/*" id="imgupload" />
-                      
-					  
+							<img :src="'https://myinstapro.herokuapp.com'+current.profile_img" alt=""></div>
+						
 						<div class="info" >
 							<span class="big">{{current.username}} </span> <br/>
 							<span class="small">{{current.name}}</span> 
@@ -19,7 +15,6 @@
 						</div>
 												
 						<div class="about">
-
 							
 						
 							<button  v-if="show" class="unfollow-follow" @click="followunfollow">{{typeofuser}}</button>
@@ -31,35 +26,21 @@
 						
 						<button class="post" @click="post" >post</button>
 						<button class="followers" @click="followers">followers</button>
-						<button class="following" @click="following">following</button></div>
-
-						
+						<button class="following" @click="following">following</button></div> 
 			</div>
 </template>
 
 <script>
-import axios from 'axios';
-
 export default {
 	data(){
 		return {
 
-			typeofuser:"follower",
-			selectedFile: null,
-			item:{
-              image : null,
-              image_url: null,
-              
-        		},
+			typeofuser:"follower"
 
 		}
 	},
 
 	computed:{
-		img(){
-			return this.current.profile_img
-		},
-		
 
 		current(){
 			
@@ -79,56 +60,6 @@ export default {
 	},
 	
 	methods:{
-
-		onFileChanged (event) {
-                  this.selectedFile = event.target.files[0]
-                  console.log(this.selectedFile)
-                  let reader = new FileReader();
-                  reader.readAsDataURL(this.selectedFile);
-                  reader.onload= e=>{
-					this.item.image_url=e.target.result,
-					this.onUpload()
-                  }
-				  },
-		onUpload() {
-					  const formData = new FormData()
-					  console.log("going")
-                      formData.append('image', this.selectedFile, this.selectedFile.name)
-                      axios.post('http://127.0.0.1:8000/api/images/', formData)
-                      .then(res=>{
-
-                       console.log(res.data.image)
-					   this.item.image=res.data.image,
-					   this.update()
-					   
-                       
-
-                      })
-		},
-		update(){
-
-			fetch('http://127.0.0.1:8000/api/registor/',{
-                  method: 'PUT',
-                  headers: {
-                    'Content-Type': 'application/json',
-                  },
-                  body: JSON.stringify({
-                    "name": this.$store.state.user[0].name,
-                    "username": this.$store.state.user[0].username,
-					"password": this.$store.state.user[0].password,
-					"profile_img":this.item.image
-                    }),
-                  })
-          .then(res=> res.json())
-          .then((data)=>{
-			console.log(data),
-			this.$store.commit('set_user_img',data)
-           
-            
-            
-            })
-
-		},
 		post(){
 			this.$store.commit('set_btn',1)
 
