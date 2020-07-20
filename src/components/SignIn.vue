@@ -11,13 +11,13 @@
                                         </div>
                                         <span>Sign-in</span>
                                         <form >
-                                            <input v-model="sign.name" type="text" placeholder="Name">
+                                            <input v-model="sign.name" type="text" placeholder="Name" :class="checkName">
                                                 <br>
-                                            <input v-model="sign.username" type="text" placeholder="UserName">
+                                            <input v-model="sign.username" type="text" placeholder="UserName" :class="checkUsername">
                                                 <br>
-                                            <input v-model="sign.password" type="password" placeholder="Password">
+                                            <input v-model="sign.password" type="password" placeholder="Password" :class="checkPassword">
                                                <br>
-                                            <input v-model="sign.Conformpassword" type="password" placeholder="re-Password">
+                                            <input v-model="sign.Conformpassword" type="password" placeholder="re-Password" :class="checkPassword">
                                             <br>
                                             <button class="button" @click="signSubmit">Signin</button>
                                         </form>
@@ -41,6 +41,29 @@ export default {
             username:''
         }
       }
+    },
+    computed:{
+
+
+      checkName(){
+        const nameRegex = /^[a-zA-Z]+$/;
+        const res=nameRegex.test(this.sign.name);
+        console.log(res);
+        return res ? 'valid' : 'invalid'
+      },
+      checkUsername(){
+        const nameRegex = /^[a-zA-Z]+$/;
+        const res=nameRegex.test(this.sign.username);
+        console.log(res);
+        return res ? 'valid' : 'invalid'
+      },
+      checkPassword(){
+        const nameRegex = /^[a-zA-Z]+$/;
+        const res=nameRegex.test(this.sign.password);
+        console.log(res);
+        return res && this.sign.Conformpassword==this.sign.password ? 'valid' : 'invalid'
+      }
+
     },
     methods:{
       disSignin(){
@@ -141,11 +164,18 @@ form input[type="email"]
   font-family: 'Ubuntu', sans-serif;
   margin:1em 2em;
   border-radius:5px;
-  border:2px solid #f2f2f2;
+  /* border:2px solid #f2f2f2; */
   outline:none;
   padding-left:10px;
 }
 
+.valid{
+ border:2px solid #f2f2f2;
+}
+.invalid{
+  border:2px solid red;
+
+}
 .close {
   color: #aaa;
   float: right;

@@ -6,6 +6,7 @@
 
         <button class="button"  @click="disLogin">Login</button>
         
+        
                         <div id="myModal" class="modal" v-if="show">
                                     <div class="modal-content">
                                       
@@ -18,9 +19,9 @@
                                         
                                         <span>log-in</span>
                                         <form >
-                                            <input v-model="username" type="text" placeholder="username">
+                                            <input v-model="username" type="text" placeholder="username"  :class="checkUsername">
                                             <br>
-                                            <input v-model="password" type="password" placeholder="password">
+                                            <input v-model="password" type="password" placeholder="password" :class="checkPassword">
                                             <br>
                                             <button class="button" @click.stop.prevent="loginSubmit">login</button>
                                         </form>
@@ -50,6 +51,18 @@ export default {
     computed:{
       users(){
          return this.$store.state.users
+      },
+      checkUsername(){
+        const nameRegex = /^[a-zA-Z]+$/;
+        const res=nameRegex.test(this.username);
+        console.log(res);
+        return res ? 'valid' : 'invalid'
+      },
+      checkPassword(){
+        const nameRegex = /^[a-zA-Z]+$/;
+        const res=nameRegex.test(this.password);
+        console.log(res);
+        return res ? 'valid' : 'invalid'
       }
     },
     methods:{
@@ -158,9 +171,16 @@ form input[type="password"] {
   font-family: 'Ubuntu', sans-serif;
   margin:1em 2em;
   border-radius:5px;
-  border:2px solid #f2f2f2;
+  /* border:2px solid #f2f2f2; */
   outline:none;
   padding-left:10px;
+}
+.valid{
+ border:2px solid #f2f2f2;
+}
+.invalid{
+  border:2px solid red;
+
 }
 
 .close {
