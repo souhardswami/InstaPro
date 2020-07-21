@@ -53,13 +53,13 @@ export default {
          return this.$store.state.users
       },
       checkUsername(){
-        const nameRegex = /^[a-zA-Z]+$/;
+        const nameRegex = /^[a-zA-z]\w{5,}$/;
         const res=nameRegex.test(this.username);
         console.log(res);
         return res ? 'valid' : 'invalid'
       },
       checkPassword(){
-        const nameRegex = /^[a-zA-Z]+$/;
+        const nameRegex = /^\w{3,}$/;
         const res=nameRegex.test(this.password);
         console.log(res);
         return res ? 'valid' : 'invalid'
@@ -179,7 +179,8 @@ form input[type="password"] {
  border:2px solid #f2f2f2;
 }
 .invalid{
-  border:2px solid red;
+  border:2px solid #f2f2f2;
+  border-bottom:2px solid red;
 
 }
 

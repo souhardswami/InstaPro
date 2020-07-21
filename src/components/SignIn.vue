@@ -46,19 +46,19 @@ export default {
 
 
       checkName(){
-        const nameRegex = /^[a-zA-Z]+$/;
+        const nameRegex = /^[a-zA-z]\w{5,}$/;
         const res=nameRegex.test(this.sign.name);
         console.log(res);
         return res ? 'valid' : 'invalid'
       },
       checkUsername(){
-        const nameRegex = /^[a-zA-Z]+$/;
+        const nameRegex = /^[a-zA-z]\w{5,}$/;
         const res=nameRegex.test(this.sign.username);
         console.log(res);
         return res ? 'valid' : 'invalid'
       },
       checkPassword(){
-        const nameRegex = /^[a-zA-Z]+$/;
+        const nameRegex = /^\w{3,}$/;
         const res=nameRegex.test(this.sign.password);
         console.log(res);
         return res && this.sign.Conformpassword==this.sign.password ? 'valid' : 'invalid'
@@ -173,7 +173,8 @@ form input[type="email"]
  border:2px solid #f2f2f2;
 }
 .invalid{
-  border:2px solid red;
+ border:2px solid #f2f2f2;
+  border-bottom:2px solid red;
 
 }
 .close {
