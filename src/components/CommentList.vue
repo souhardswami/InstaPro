@@ -8,7 +8,7 @@
         <div id="comments" v-for="comment in comments" :key="comment.id">
                     <section>
                     
-                    <img :src="'https://myinstapro.herokuapp.com'+comment.profile_img" alt="">
+                    <img :src="'http://127.0.0.1:8000'+comment.profile_img" alt="">
                             <article>
                                 <p>
                                   {{comment.comment_text}}
@@ -46,7 +46,7 @@ export default {
 
 
       
-     fetch('https://myinstapro.herokuapp.com/api/comments/',{
+     fetch('http://127.0.0.1:8000/api/comments/',{
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',

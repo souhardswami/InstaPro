@@ -12,7 +12,7 @@
       <div  v-for="pic in images" :key="pic.id"  class="grid">
               <figure>
                 <div class="img-container">
-                    <img :src="'https://myinstapro.herokuapp.com'+pic.image_url" >
+                    <img :src="'http://127.0.0.1:8000'+pic.image_url" >
                     
                 </div>
                 
