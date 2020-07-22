@@ -19,7 +19,7 @@
                                                <br>
                                             <input v-model="sign.Conformpassword" type="password" placeholder="re-Password" :class="checkPassword">
                                             <br>
-                                            <button class="button" @click="signSubmit">Signin</button>
+                                            <button class="button" @click="signSubmit" :disabled="notValid">Signin</button>
                                         </form>
                                     </div>
                         </div>
@@ -62,6 +62,16 @@ export default {
         const res=nameRegex.test(this.sign.password);
         console.log(res);
         return res && this.sign.Conformpassword==this.sign.password ? 'valid' : 'invalid'
+      },
+      notValid(){
+
+        if(this.checkPassword==='valid' && this.checkUsername==='valid' && this.checkName==='valid'){
+          return false
+        }
+        else{
+          return true
+        }
+
       }
 
     },

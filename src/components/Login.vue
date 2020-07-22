@@ -23,7 +23,7 @@
                                             <br>
                                             <input v-model="password" type="password" placeholder="password" :class="checkPassword">
                                             <br>
-                                            <button class="button" @click.stop.prevent="loginSubmit">login</button>
+                                            <button class="button" @click.stop.prevent="loginSubmit" :disabled="notValid">login</button>
                                         </form>
                                     </div>
                         </div>
@@ -37,6 +37,7 @@
 export default {
     data(){
       return{
+        
         show:false,
         username:'',
         password:'',
@@ -63,7 +64,18 @@ export default {
         const res=nameRegex.test(this.password);
         console.log(res);
         return res ? 'valid' : 'invalid'
+      },
+      notValid(){
+
+        if(this.checkPassword==='valid' && this.checkUsername==='valid'){
+          return false
+        }
+        else{
+          return true
+        }
+
       }
+
     },
     methods:{
       disLogin(){
@@ -74,6 +86,7 @@ export default {
         
       },
       loginSubmit(){
+        console.log("not active")
         this.send.username=this.username,
         this.send.password=this.password
         fetch('http://127.0.0.1:8000/api/userAuth/',{

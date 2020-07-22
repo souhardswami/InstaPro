@@ -7,7 +7,7 @@
                             <div class="avatar">
                                 <div class="circle"></div>
                                 <div class="circle"></div>
-                                <img :src="'https://myinstapro.herokuapp.com'+user.profile_img" alt="">
+                                <img :src="'http://127.0.0.1:8000'+user.profile_img" alt="">
                                 </div>
                             
                             <div class="info" >
