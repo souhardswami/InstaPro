@@ -35,6 +35,7 @@
 </template>
 
 <script>
+import token from '../../apikey.js';
 import LikeList from '@/components/LikeList.vue'
 export default {
     components:{
@@ -78,7 +79,8 @@ export default {
                 method: 'POST',
                 headers:
                          {
-                             'Content-Type': 'application/json'
+                             'Content-Type': 'application/json',
+                             'Authorization': token.HiddenToken
                         },
                 body: JSON.stringify(
                     this.send

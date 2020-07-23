@@ -7,7 +7,7 @@
                             <div class="avatar">
                                 <div class="circle"></div>
                                 <div class="circle"></div>
-                                <img :src="'https://myinstapro.herokuapp.com'+user.profile_img" alt="">
+                                <img :src="'http://127.0.0.1:8000'+user.profile_img" alt="">
                                 </div>
                             
                             <div class="info" >
@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import token from '../../apikey.js';
 
 export default {
 
@@ -51,7 +52,8 @@ export default {
       fetch('http://127.0.0.1:8000/api/following/',{
               method: 'POST',
               headers: {
-                'Content-Type': 'application/json',
+				'Content-Type': 'application/json',
+				'Authorization': token.HiddenToken
               },
               body: JSON.stringify({"user":this.current.id}),
               })

@@ -31,6 +31,7 @@
 </template>
 
 <script>
+import token from '../../apikey.js';
 import CommentList from '@/components/CommentList.vue'
 export default {
 
@@ -70,7 +71,8 @@ export default {
                 method: 'POST',
                 headers:
                          {
-                             'Content-Type': 'application/json'
+                             'Content-Type': 'application/json',
+                             'Authorization': token.HiddenToken
                         },
                 body: JSON.stringify(
                     this.send

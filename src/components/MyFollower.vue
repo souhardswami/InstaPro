@@ -23,6 +23,7 @@
 </template>
 
 <script>
+import token from '../../apikey.js';
 
 export default {
 
@@ -51,7 +52,8 @@ export default {
       fetch('http://127.0.0.1:8000/api/follower/',{
               method: 'POST',
               headers: {
-                'Content-Type': 'application/json',
+				'Content-Type': 'application/json',
+				'Authorization': token.HiddenToken
               },
               body: JSON.stringify({"user":this.current.id}),
               })

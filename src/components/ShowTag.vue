@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import token from '../../apikey.js';
 export default {
   props:['tagword'],
 
@@ -31,6 +32,7 @@ export default {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
+                'Authorization': token.HiddenToken
               },
               body: JSON.stringify({"idd":this.tagword}),
               })

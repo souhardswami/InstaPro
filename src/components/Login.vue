@@ -34,6 +34,7 @@
 
 
 <script>
+import token from '../../apikey.js';
 export default {
     data(){
       return{
@@ -93,6 +94,8 @@ export default {
                   method: 'POST',
                   headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': token.HiddenToken
+
                   },
                   body: JSON.stringify(this.send)})
         .then(res=> res.json())
@@ -113,7 +116,9 @@ export default {
         fetch('http://127.0.0.1:8000/api/userImage/',{
               method: 'POST',
               headers: {
+                
                 'Content-Type': 'application/json',
+                'Authorization': token.HiddenToken
               },
               body: JSON.stringify({"user":userId}),
               })

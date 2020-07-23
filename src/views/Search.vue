@@ -13,7 +13,7 @@
 
                 <div class="card">
                     <div class="picture">
-                        <img  :src="'https://myinstapro.herokuapp.com'+user.profile_img">
+                        <img  :src="'http://127.0.0.1:8000'+user.profile_img">
                     </div>
                     <div class="team-content">
                         <h3 class="name">{{user.username}}</h3>
@@ -90,6 +90,8 @@
 </template>
 
 <script>
+
+import token from '../../apikey.js';				
 import ProfileCopy from './Profile.vue'
 import ShowTag from '@/components/ShowTag.vue'
 export default {
@@ -140,6 +142,7 @@ export default {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
+                'Authorization': token.HiddenToken
               },
               body: JSON.stringify({"item":this.search}),
               })

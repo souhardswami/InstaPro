@@ -69,6 +69,7 @@
 
 
 <script>
+import token from '../../apikey.js';
 import axios from 'axios';
 
 export default {
@@ -130,9 +131,13 @@ export default {
                   }
                   },
               onUpload() {
+                      const headers = { 
+                        'Authorization': token.HiddenToken
+                        
+                      };
                       const formData = new FormData()
                       formData.append('image', this.selectedFile, this.selectedFile.name)
-                      axios.post('http://127.0.0.1:8000/api/images/', formData)
+                      axios.post('http://127.0.0.1:8000/api/images/', formData,{headers})
                       .then(res=>{
 
                        console.log(res.data.image)
@@ -150,6 +155,7 @@ export default {
                     method: 'POST',
                     headers: {
                       'Content-Type': 'application/json',
+                      'Authorization': token.HiddenToken
                     },
                     body: JSON.stringify(
                       {

@@ -10,7 +10,7 @@
                     <section>
                     
                     
-                    <img :src="'https://myinstapro.herokuapp.com'+like.profile_img" alt="">
+                    <img :src="'http://127.0.0.1:8000'+like.profile_img" alt="">
                             <article>
                                 
                                  <span class="by"><a href="#" class="author" >{{like.username}}</a></span>
@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import token from '../../apikey.js';
 export default {
 
 
@@ -61,7 +62,8 @@ export default {
           fetch('http://127.0.0.1:8000/api/likes/',{
               method: 'POST',
               headers: {
-                'Content-Type': 'application/json',
+                  'Content-Type': 'application/json',
+                  'Authorization': token.HiddenToken
               },
               body: JSON.stringify({"picId":this.$store.state.picId}),
               })

@@ -42,6 +42,7 @@
 </template>
 
 <script>
+import token from '../../apikey.js';
 import axios from 'axios';
 
 export default {
@@ -95,10 +96,17 @@ export default {
                   }
 				  },
 		onUpload() {
+					const headers = { 
+								'Authorization': token.HiddenToken
+								
+							};
+                      
+                      
+                      
 					  const formData = new FormData()
 					  console.log("going")
                       formData.append('image', this.selectedFile, this.selectedFile.name)
-                      axios.post('http://127.0.0.1:8000/api/images/', formData)
+                      axios.post('http://127.0.0.1:8000/api/images/', formData,{headers})
                       .then(res=>{
 
                        console.log(res.data.image)
@@ -114,7 +122,8 @@ export default {
 			fetch('http://127.0.0.1:8000/api/registor/',{
                   method: 'PUT',
                   headers: {
-                    'Content-Type': 'application/json',
+					'Content-Type': 'application/json',
+					'Authorization': token.HiddenToken
                   },
                   body: JSON.stringify({
                     "name": this.$store.state.user[0].name,
@@ -155,7 +164,8 @@ export default {
 						method: 'POST',
 						headers: {
 							'Content-Type': 'application/json',
-						},
+							'Authorization': token.HiddenToken
+                  		},
 						body: JSON.stringify({"user":this.$store.state.user[0].id ,"check":this.$store.state.ondemand.id}),
 						})
 				.then(res=> res.json())
@@ -173,7 +183,8 @@ export default {
 						method: 'POST',
 						headers: {
 							'Content-Type': 'application/json',
-						},
+							'Authorization': token.HiddenToken
+                  		},
 						body: JSON.stringify({"user":this.$store.state.user[0].id ,"check":this.$store.state.ondemand.id}),
 						})
 				.then(res=> res.json())
@@ -193,8 +204,9 @@ export default {
 		fetch('http://127.0.0.1:8000/api/checkfollower/',{
               method: 'POST',
               headers: {
-                'Content-Type': 'application/json',
-              },
+							'Content-Type': 'application/json',
+							'Authorization': token.HiddenToken
+                  		},
 			  body: JSON.stringify({"user":this.$store.state.user[0].id ,"check":this.$store.state.ondemand.id}),
               })
       .then(res=> res.json())

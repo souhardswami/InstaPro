@@ -24,6 +24,7 @@
 </template>
 
 <script>
+import token from '../../apikey.js';
 export default {
   props:['trigger'],
 
@@ -50,6 +51,7 @@ export default {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
+                'Authorization': token.HiddenToken
               },
               body: JSON.stringify({"picId":this.$store.state.picId}),
               })
