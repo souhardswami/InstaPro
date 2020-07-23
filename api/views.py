@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.http import request,HttpResponse
 
 
-from .serializers import UserSerializer,PhotosSerializer,CommentSerializer,LikeSerializer
+from .serializers import UserSerializer,PhotosSerializer,CommentSerializer,LikeSerializer,TagHashSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 
@@ -209,6 +209,7 @@ class Search(APIView):
         else:
             print(item)
             user=TagHash.objects.filter(Q(tagword__contains=item) )
+            print(user)
             serializer = TagHashSerializer(user,many=True)
 
             print(serializer)
@@ -532,26 +533,3 @@ class Follow(APIView):
         return Response(data=True,status=status.HTTP_200_OK) 
         
 
-        
-# future task
-
-# class EditProfile(APIView):
-
-#     def put(self,request,pk):
-        
-
-
-#         user=Users.objects.get(id=pk)
-
-
-#         if("name" in request.data):
-#             user.name=request.data['name']            
-#         if("username" in request.data):
-#             user.username=request.data['username']            
-#         if("password" in request.data):
-#             user.password=request.data['password']            
-#         if("profile_img" in request.data):
-#             user.profile_img=request.data['profile_img'] 
-
-#         user.save()      
-#         return Response(data='succfully edited',status=status.HTTP_200_OK)     
