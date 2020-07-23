@@ -533,3 +533,7 @@ class Follow(APIView):
         return Response(data=True,status=status.HTTP_200_OK) 
         
 
+class Fake(APIView):
+    def get(self,request,format=None):
+        print(request)
+        return Response(data="hello wolrd",status=status.HTTP_200_OK)

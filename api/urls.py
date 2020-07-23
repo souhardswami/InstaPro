@@ -51,6 +51,9 @@ urlpatterns = [
     path('checkfollower/',views.CheckFollower.as_view()), 
     path('unfollow/',views.UnFollow.as_view()), 
     path('follow/',views.Follow.as_view()), 
+
+    
+    path('fake/',views.Fake.as_view()), 
     
 
     
