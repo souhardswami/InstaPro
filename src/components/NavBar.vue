@@ -113,11 +113,15 @@ export default {
     height:60px;
     border:solid 4px black;
     border-radius:50%; 
+    overflow: hidden;
     
   }
 
   
    #proimg img{
+
+     width:100%;
+     height: 100%;
     
     
     border-radius:50%; 

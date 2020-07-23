@@ -328,7 +328,7 @@ height: 250px;
 
 .card .picture img {
   width: 100%;
-  height: auto;
+  height: 100%;
   border-radius: 50%;
   transform: scale(1);
   transition: all 0.9s ease 0s;
